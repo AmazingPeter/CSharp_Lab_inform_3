@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,14 +44,14 @@ namespace sem4_3
         {
             IEnumerable<Food> f = food.Where(s => s is Dish);
 
-            Print(f, 3);
+            Print(f, 2);
         }
 
         public void GetNonAlcoholic()
         {
             IEnumerable<Food> f = food.Where(s => s is Drink && s.IsAlcoholic() == false);
 
-            Print(f, 4);
+            Print(f, 3);
         }
 
         public void GetDietary()
@@ -59,7 +59,7 @@ namespace sem4_3
             averagePrice = food.Where(s => s is Drink && s.IsAlcoholic() == true).Average(s => s.price);
             IEnumerable<Food> f = food.Where(s => s is Dish && s.IsDietary() == true && s.price < averagePrice);
 
-            Print(f, 5);
+            Print(f, 4);
         }
 
         public void Print()
@@ -81,21 +81,15 @@ namespace sem4_3
                     } break;
                 case 2:
                     {
-                        //foreach (Food result in f)
-                            //if (result != fNow)
-                                //Console.WriteLine(" " + result.name);
+                        foreach (Food fNow in f)
+                            Console.WriteLine(fNow.name + " : " + fNow.ListOfIngredients());
                     } break;
                 case 3:
                     {
                         foreach (Food fNow in f)
-                            Console.WriteLine(fNow.name + " : " + fNow.ListOfIngredients());
-                    } break;
-                case 4:
-                    {
-                        foreach (Food fNow in f)
                             Console.WriteLine(fNow.name + " non-alcoholic");
                     } break;
-                case 5:
+                case 4:
                     {
                         foreach (Food fNow in f)
                             Console.WriteLine(fNow.name + " " + averagePrice);
